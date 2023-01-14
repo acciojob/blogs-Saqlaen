@@ -31,7 +31,10 @@ public class BlogService {
 
     public void createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
-
+        Blog blog = new Blog();
+        blog.setId( userId );
+        blog.setTitle( title );
+        blog.setContent( content );
         //updating the blog details
 
         //Updating the userInformation and changing its blogs
@@ -40,10 +43,22 @@ public class BlogService {
 
     public Blog findBlogById(int blogId){
         //find a blog
+        return blogRepository1.findById(blogId).get();
     }
 
     public void addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog after creating it
+        Blog  blog = blogRepository1.findById(blogId).get();
+        
+        Image img = this.imageService1.createAndReturn( blog, description, dimensions );
+        // new Image();
+        // img.setDescription( description );
+        // img.setDimensions( dimension );
+
+        List<Image> imges = blog.getImages();
+        imges.add( img );
+
+        
     }
 
     public void deleteBlog(int blogId){

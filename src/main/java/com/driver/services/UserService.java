@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class UserService {
+
     @Autowired
     UserRepository userRepository3;
 
@@ -17,6 +18,7 @@ public class UserService {
     BlogService blogService3;
 
     public void createUser(User user){
+        this.userRepository3.save( user );
     }
 
     public void deleteUser(int userId){

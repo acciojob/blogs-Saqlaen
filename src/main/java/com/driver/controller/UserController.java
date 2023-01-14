@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
+    private UserService userservice;
+    
     @PostMapping("/create")
     public ResponseEntity<Void> createUser(@RequestBody User user) {
         return new ResponseEntity<>(HttpStatus.CREATED);
