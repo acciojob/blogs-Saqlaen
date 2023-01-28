@@ -18,7 +18,7 @@ public class UserService {
     BlogService blogService3;
 
     public void createUser(User user){
-        this.userRepository3.save( user );
+        userRepository3.save( user );
     }
 
     public void deleteUser(int userId){
