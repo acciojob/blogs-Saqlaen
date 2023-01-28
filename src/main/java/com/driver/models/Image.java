@@ -22,12 +22,6 @@ public class Image {
 	@JoinColumn
 	private Blog blog;
 
-	public Image(String description, String dimensions) {
-		super();
-		this.description = description;
-		this.dimensions = dimensions;
-	}
-
 	public Image() {
 		// TODO Auto-generated constructor stub
 	}
@@ -63,6 +57,14 @@ public class Image {
 	public void setBlog(Blog blog) {
 		this.blog = blog;
 	}
+
+	public Image(String description, String dimensions) {
+		super();
+		this.description = description;
+		this.dimensions = dimensions;
+	}
+	
+	
 
 
 }
