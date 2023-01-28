@@ -25,6 +25,7 @@ public class BlogService {
     UserRepository userRepository1;
 
     public List<Blog> showBlogs(){
+    	return blogRepository1.findAll();
         //find all blogs
 
     }
@@ -32,13 +33,23 @@ public class BlogService {
     public void createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
         Blog blog = new Blog();
+        
         blog.setId( userId );
         blog.setTitle( title );
         blog.setContent( content );
+        blog.setPubDate(new Date() );
+        
+        User user = userRepository1.findById(userId).get();
+        blog.setUser(user);
         //updating the blog details
-
         //Updating the userInformation and changing its blogs
-
+        List<Blog> bloglists = user.getBlogList();
+        bloglists.add( blog );
+        user.setBlogList(bloglists);
+        
+        //calling only the parent so the child blog will automatically be save beacause of the 
+        // bidirectional mapping
+        userRepository1.save( user );
     }
 
     public Blog findBlogById(int blogId){
@@ -55,13 +66,18 @@ public class BlogService {
         // img.setDescription( description );
         // img.setDimensions( dimension );
 
-        List<Image> imges = blog.getImages();
+        List<Image> imges = blog.getImageList();
         imges.add( img );
+        blog.setImageList(imges);
+        
+        blogRepository1.save(blog);
 
         
     }
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
+    	Blog blog = blogRepository1.findById(blogId).get();
+    	blogRepository1.delete(blog);
     }
 }
