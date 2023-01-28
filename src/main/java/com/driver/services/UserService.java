@@ -31,7 +31,7 @@ public class UserService {
     }
 
     public User findUserByUsername(String username){
-        List<User> users =  userRepository3.findByUsername(username);
-        return users.get(0);
+        User user =  userRepository3.findByUsername(username);
+        return user;
     }
 }
