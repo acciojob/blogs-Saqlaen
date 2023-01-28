@@ -25,9 +25,9 @@ public class ImageService {
         return img;
     }
 
-    public void deleteImage(int imageId){
-        Image img = imageRepository2.findById(imageId).get();
-        imageRepository2.deleteById( img.getId() );
+    public void deleteImage(Image image){
+        int imageId = image.getId();
+        imageRepository2.deleteById( imageId );
     }
 
     public Image findById(int id) {
