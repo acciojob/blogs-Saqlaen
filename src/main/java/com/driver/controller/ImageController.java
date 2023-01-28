@@ -14,6 +14,8 @@ public class ImageController {
 	
 	@Autowired
 	ImageService imageService;
+	
+	
 
     @PostMapping("/create")
     public ResponseEntity<Image> createAndReturn(@RequestBody Blog blog,
@@ -25,7 +27,8 @@ public class ImageController {
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")
     public ResponseEntity<Integer> countImagesInScreen(@PathVariable int id, @PathVariable String screenDimensions){
-        int count = imageService.countImagesInScreen(id, screenDimensions);
+        Image img = imageService.findById(id);
+    	int count = imageService.countImagesInScreen(img, screenDimensions);
         return new ResponseEntity<>(count, HttpStatus.OK);
     }
 

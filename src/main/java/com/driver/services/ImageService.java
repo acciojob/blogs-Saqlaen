@@ -34,10 +34,10 @@ public class ImageService {
         return imageRepository2.findById( id ).get();
     }
 
-    public int countImagesInScreen(int imageId, String screenDimensions) {
+    public int countImagesInScreen(Image image, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
-    	Image img = imageRepository2.findById(imageId).get();
+    	Image img = image;
         int count = 0;
         if( img == null ){
             return 0;
